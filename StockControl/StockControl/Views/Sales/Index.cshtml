@@ -1,0 +1,59 @@
+﻿@*Bu kod veritabanındaki tablolara erişmek için kullanılır*@
+@using StockControl.Models.Entity
+@*liste olarak benim çkmek istediğim tabloyu tutacak*@
+@*@model PagedList.IPagedList<Sales>
+@using PagedList
+@using PagedList.Mvc*@
+@model List<Sales>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<style>
+
+    th {
+        text-align: center;
+    }
+</style>
+
+<table class="table table-bordered" style="text-align:center;" id="tbl">
+    <thead>
+        <tr>
+            <th hidden>SALES ID</th>
+            <th>PRODUCT ID</th>
+            <th>CUSTOMER ID</th>
+            <th>PIECE</th>
+            <th>PRICE</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @*list yazdırabilmek için kullanırız*@
+        @*Model yukarda oluşturduğum @model listten geliyor*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td hidden>@item.SALESID</td>
+                <td>@item.Products.PRODUCTNAME</td>
+                <td>@item.Customers.CUSTOMERNAME</td>
+                <td>@item.PIECE</td>
+                <td>@item.PRICE</td>
+
+
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+@*burada tableın altında diğer kayıtları göstermek için paging sayfa sayısını basıyoruz*@
+@*@Html.PagedListPager((IPagedList)Model, number => Url.Action("Index", new { number }))*@
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-html5-1.5.6/fh-3.1.4/datatables.min.js"></script>
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+<script>
+    $('#tbl').DataTable();
+</script>

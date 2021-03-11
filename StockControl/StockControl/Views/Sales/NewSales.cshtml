@@ -1,0 +1,47 @@
+﻿@model StockControl.Models.Entity.Sales
+@{
+    ViewBag.Title = "NewSales";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal1"> SALES </button>
+<div style="color:red;">@ViewBag.Mesaj</div><br />
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title"><h1>Sales ADD</h1></div>
+            </div>
+            <form method="post" class="form-group">
+                <div class="modal-body">
+                    <div>
+                        <label>Product ID</label>
+                        @Html.TextBoxFor(x => x.PRODUCTID, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.PRODUCTID, "", new { @style = "color:blue;" })
+                    </div>
+                    <div>
+                        <label>Customer ID</label>
+                        @Html.TextBoxFor(x => x.CUSTOMERID, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.CUSTOMERID, "", new { @style = "color:blue;" })
+                    </div>
+                    <div>
+                        <label>Piece</label>
+                        @Html.TextBoxFor(x => x.PIECE, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.PIECE, "", new { @style = "color:blue;" })
+                    </div>
+
+                    <div>
+                        <label>Price</label>
+                        @Html.TextBoxFor(x => x.PRICE, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.PRICE, "", new { @style = "color:blue;" })
+                    </div>
+                    
+                    <br />
+                    <div>
+                        <button type="submit" class="btn btn-warning"> ADD</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">GIVE UP</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

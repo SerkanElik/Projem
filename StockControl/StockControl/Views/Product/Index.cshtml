@@ -1,0 +1,65 @@
+﻿@using StockControl.Models.Entity
+@*@model PagedList.IPagedList<Products>
+@using PagedList
+@using PagedList.Mvc*@
+
+@model List<Products>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<style>
+    th {
+        text-align: center;
+    }
+</style>
+<table class="table table-bordered" style="text-align:center;" id="tbl">
+    <thead>
+        <tr>
+            <th hidden>PRODUCT ID</th>
+
+            <th>PRODUCT NAME</th>
+            <th>BRAND</th>
+            <th>CATEGORY ID / CATEGORY NAME</th>
+            <th>PRICE</th>
+            <th>STOCK</th>
+            <th>IMAGE</th>
+            <th>DETAILS</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td hidden>@item.PRODUCTID</td>
+                <td>@item.PRODUCTNAME</td>
+                <td>@item.BRAND</td>
+                <td>@item.CATEGORYID /  @item.PRODUCTNAME</td>
+                <td>@item.PRICE</td>
+                <td>@item.STOCK</td>
+                <td><img src="@item.PRODUCTIMAGE" width="75px" height="75px" /></td>
+                @*/Category/Delete/ dosyasına git @item.CATEGORYID sini gönder o methoda ve id ye göre sil*@
+                @*<td><a href="/Product/Delete/@item.PRODUCTID" class="btn btn-danger">DELETE</a></td>*@
+
+                @* ActionLink ile sil butonunda sil dediğimizde evet hayır çıkıyor evet dersek delete metoduna ıdyi gönderiyor ve siliyor hayır dersek sayfayı dönderiyor*@
+                <td>
+                    @Html.ActionLink("DELETE", "Delete", new { id = item.PRODUCTID }, new { @class = "btn btn-danger", onclick = "return confirm('Do you want to DELETE?')" })
+
+                    @*/Category/Update/ dosyasına git @item.CATEGORYID sini gönder o metoda ve id ye göre güncelle*@
+                    <a href="/Product/Update/@item.PRODUCTID" class="btn btn-success">UPDATE</a>
+                    <a href="/Product/ProductDetail/@item.PRODUCTID" class="btn btn-info">DETAILS</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+@*@Html.PagedListPager((IPagedList)Model, number => Url.Action("Index", new { number }))*@
+<a href="/Product/NewProduct/" class="btn btn-primary">New Product</a>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-html5-1.5.6/fh-3.1.4/datatables.min.js"></script>
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+<script>
+    $('#tbl').DataTable();
+</script>

@@ -1,0 +1,25 @@
+﻿@model StockControl.Models.Entity.Categories
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Category", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(x => x.CATEGORYID, new { @class = "hidden" })
+        @Html.TextBoxFor(x => x.CATEGORYID, new { @class = "hidden"  })
+    </div>
+    <div>
+        @Html.LabelFor(x => x.CATEGORYNAME)
+        @Html.TextBoxFor(x => x.CATEGORYNAME, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(x => x.CATEGORYSTATUS)
+        @Html.TextBoxFor(x => x.CATEGORYSTATUS, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px;">
+        <button class="btn btn-warning">UPDATE</button>
+    </div>
+}
+

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="stockDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CATEGORYID" />
+    </Key>
+    <Property Name="CATEGORYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CATEGORYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="CATEGORYSTATUS" Type="bit" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CUSTOMERID" />
+    </Key>
+    <Property Name="CUSTOMERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CUSTOMERNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="CUSTOMERSURNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="CUSTOMERSTATUS" Type="bit" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="PRODUCTID" />
+    </Key>
+    <Property Name="PRODUCTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRODUCTNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="BRAND" Type="nvarchar" MaxLength="50" />
+    <Property Name="PRICE" Type="int" />
+    <Property Name="STOCK" Type="int" />
+    <Property Name="CATEGORYID" Type="int" />
+    <Property Name="PRODUCTSTATUS" Type="bit" />
+    <Property Name="PRODUCTIMAGE" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="SALESID" />
+    </Key>
+    <Property Name="SALESID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRODUCTID" Type="int" />
+    <Property Name="PIECE" Type="int" />
+    <Property Name="PRICE" Type="int" />
+    <Property Name="CUSTOMERID" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Workers">
+    <Key>
+      <PropertyRef Name="WorkerID" />
+    </Key>
+    <Property Name="WorkerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkerAccountName" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkerSurname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Products_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CATEGORYID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CATEGORYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CUSTOMERID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="CUSTOMERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="PRODUCTID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="PRODUCTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="stockDatabaseModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Customers" Association="Self.FK_Sales_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Products" Association="Self.FK_Sales_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
