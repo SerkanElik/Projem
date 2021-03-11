@@ -1,0 +1,62 @@
+﻿@model StockControl.Models.Entity.Products
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@* İmage yüklemek için form ögesine enctype özelliğini  multipart/form-data yapmalıyız*@
+<form method="post" class="form-group" enctype="multipart/form-data">
+    <div>
+        @Html.LabelFor(x => x.PRODUCTID, new { @class = "hidden" })
+        @Html.TextBoxFor(x => x.PRODUCTID, new { @class = "hidden" })
+
+    </div>
+    <div>
+        @Html.LabelFor(x => x.PRODUCTNAME)
+        @Html.TextBoxFor(x => x.PRODUCTNAME, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(x => x.BRAND)
+        @Html.TextBoxFor(x => x.BRAND, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(x => x.PRICE)
+        @Html.TextBoxFor(x => x.PRICE, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(x => x.STOCK)
+        @Html.TextBoxFor(x => x.STOCK, new { @class = "form-control" })
+    </div>
+    <div>
+        <input type='file' name="productImage" onchange="control(this);"  required=""/>
+        <img id="resmim" src="" style="max-width:180px;" />
+
+        <script>
+            function control(input) {
+                if (input.files && input.files[0]) {
+                    if (input.files[0].size > 1024 * 1000) {//boyut kontrolü
+                        alert("Boyut Büyük");
+                        document.getElementById("dosya").value = "";
+                    }
+                    else {
+                        if (input.files[0].type != "image/jpeg") {//tür kontrolü
+                            alert("Format uygun değil");
+                            document.getElementById("dosya").value = "";
+                        }
+                        else {
+                            var resim = new FileReader();
+                            resim.onload = function (e) {//resmin img taginde gösterilmesi
+                                $('#resmim')
+                                    .attr('src', e.target.result);
+                            };
+                            resim.readAsDataURL(input.files[0]);
+                        }
+                    }
+                }
+            }
+        </script>
+    </div>
+    <div style="margin-top:15px;">
+        <button class="btn btn-warning">UPDATE</button>
+    </div>
+</form>
+

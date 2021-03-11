@@ -1,0 +1,139 @@
+﻿@model StockControl.Models.Entity.Workers
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="~/login_popup-pack/css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--webfonts-->
+    <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!--//webfonts-->
+   
+
+</head>
+<body>
+    <div class="main">
+        <div class="user">
+            <img src="~/login_popup-pack/images/user.png" alt="">
+        </div>
+        <div class="login">
+            <div class="inset">
+                <!-----start-main---->
+                <form class="form-group" id="login" method="post">
+
+                    <div>
+                        <label>Account Name</label>
+                        @Html.TextBoxFor(x => x.WorkerAccountName, new { @class = "form-control", placeholder = "Account Name", @style = "text-align:Center;" })
+                    </div>
+
+                    <div>
+                        <label>Account Name</label>
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "Password", @style = "text-align:Center;" })
+                    </div>
+
+                    <div style="color:red;">@ViewBag.Mesaj</div>
+
+                    <div>
+
+                        <label><input type="checkbox" name="Remember"  id="remember" />&nbsp;Remember!</label><br />
+
+                        <button class="btn btn-info" id="loginButton" style="margin-top:15px;">LOGIN</button>
+
+                        <span class="forget-pass">
+                            <a href="#" data-toggle="modal" data-target="#Modal1">Register!</a>
+                        </span>
+
+
+                        <div class="clear"> </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="modal" id="Modal1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">REGISTER</h2>
+                    </div>
+                    <form class="form-group" id="newAccountForm">
+                        <div class="modal-body">
+                            <div>
+                                <label>Worker Name</label>
+                                @Html.TextBoxFor(x => x.WorkerName, new { @class = "form-control" })
+                            </div>
+                            <div>
+                                <label>Worker Surname</label>
+                                @Html.TextBoxFor(x => x.WorkerSurname, new { @class = "form-control" })
+                            </div>
+                            <div>
+                                <label>Worker Account Name</label>
+                                @Html.TextBoxFor(x => x.WorkerAccountName, new { @class = "form-control" })
+                            </div>
+                            <div>
+                                <label>Password</label>
+                                @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+                            </div>
+                            <div>
+                                <button class="btn btn-info" id="newAccount">REGISTER</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-----//end-main---->
+    </div>
+
+
+    @*burada newAccount id li butona tıklayınca
+        o butonun olduğu formun içindeki değerleri bir değişkene alıyor
+        Daha sonra ajax içerisimde post işlemi yapılarak Login içindeki NewAccount metodu post yapılıyor ve o metoda formNewAccount değişkeni yollanıyor*@
+
+    <script type="text/javascript">
+        
+
+        $(document).ready(function () {
+   
+        $("#newAccount").click(function () {
+
+            //Burda form içindeki değerleri çekiyoruz..
+            var formNewAccount = $("#newAccountForm").serialize();
+
+            $.ajax({
+                //burada gideceğimiz controlve metodu yazıyoruz
+                url: '@Url.Action("NewAccount", "Login")',
+                //ne işlem yapılacapını belirliyoruz
+                type: 'POST',
+                //veri tipini belirliyoruz
+                dataType: 'json',
+                //burada formden çektiğimiz veriyi aktarıyoruz
+                data: formNewAccount,
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+
+        $("#remember").click(function () {
+            $("#remember").val(1);
+
+        });
+            
+    });
+    </script>
+    <!-----start-copyright---->
+    <div class="copy-right">
+        <p>Template by <a href="http://w3layouts.com">w3layouts</a></p>
+    </div>
+    <!-----//end-copyright---->
+
+</body>
+</html>

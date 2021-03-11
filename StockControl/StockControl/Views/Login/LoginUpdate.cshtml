@@ -1,0 +1,30 @@
+﻿@model StockControl.Models.Entity.Workers
+@{
+    ViewBag.Title = "LoginUpdate";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<form class="form-group" method="post" style="margin:25px;">
+    <div>
+        @Html.TextBoxFor(x => x.WorkerID, new { @class = "hidden ", @style = "text-align:Center;", @placeholder = "Account ID" })
+        <label>Account Name</label>
+        @Html.TextBoxFor(x => x.WorkerAccountName, new { @class = "form-control", @style = "text-align:Center;", @placeholder = "Account Name" })
+    </div>
+    <div>
+        <label>Password</label>
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "New Password", @style = "text-align:Center;" })
+    </div>
+    <div>
+        <label>New Password</label>
+        @Html.Password("newPassword", "", new { placeholder = "New Password", @class = "form-control", @style = "text-align:Center;" })<br />
+        @Html.Password("newPAsswordConfirm", "", new { placeholder = "New Password", @class = "form-control", @style = "text-align:Center;" })<br />
+    </div>
+    <div>
+        @ViewBag.MessageUpdate
+    </div>
+    <br />
+    <div style="width:auto;height:auto;text-align:center;">
+        <input type="submit" name="Update" value=" Password Update" class="btn btn-danger" />
+    </div>
+
+</form>
+

@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link href="~/Content/ulacilirPencere.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">STOCK CONTROL</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/Category/Index/">Categories</a></li>
+                    <li><a href="/Product/Index/">Products</a></li>
+                    <li><a href="/Customer/Index/">Customers</a></li>
+                    <li><a href="/Sales/NewSales/">Sales</a></li>
+                    <li><a href="#">Help</a></li>
+
+                </ul>
+            </div>
+
+
+            <div class="menu" style="float:right; margin-right:50px;margin-top:15px">
+                <span>Hoşgeldin @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(User.Identity.Name)</span>
+                <div class="acilir-menu">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Login/LoginUpdate/@User.Identity.Name.ToString()">Acoount</a></li>
+                        <li><a href="/Login/SignOut/">Sign Out</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+    </nav>
+
+    <div class="container">
+        @*bu layouta bağlı oluşturduğumuz viewleri bu alanda çağırmamızı sağlar*@
+        @RenderBody()
+    </div>
+
+</body>
+</html>

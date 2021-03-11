@@ -1,0 +1,30 @@
+﻿@model StockControl.Models.Entity.Customers
+@{
+    ViewBag.Title = "NewCustomer";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Customer Name</label>
+        @Html.TextBoxFor(x => x.CUSTOMERNAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CUSTOMERNAME, "", new { @style = "color:blue;" })
+    </div>
+    <div>
+        <label>Customer Surname</label>
+        @Html.TextBoxFor(x => x.CUSTOMERSURNAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CUSTOMERSURNAME, "", new { @style = "color:blue;" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="addB"> ADD</button>
+        @* Butona Tıklayınca eklendiğine dair mesaj veriyor *@
+        @*<script>
+                $('#addB').click(function () {
+
+                    alert('New Entry Added!');
+                });
+            </script>*@
+    </div>
+
+</form>
+

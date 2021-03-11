@@ -1,0 +1,31 @@
+﻿@model StockControl.Models.Entity.Categories
+@{
+    ViewBag.Title = "NewCategory";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post" class="form-group" style="align-content:center;"> 
+    @*<div>
+            <label>Category Name</label>
+            <input type="text" class="form-control" name="CATEGORYNAME"/>
+        </div>*@
+    <div>
+        <label>Category Name</label>
+        @Html.TextBoxFor(x => x.CATEGORYNAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CATEGORYNAME, "", new { @style = "color:blue;" })
+    </div>
+
+    <div style="margin-top:15px;">
+        <button class="btn btn-info" id="addB">ADD</button>
+        @* Butona Tıklayınca eklendiğine dair mesaj veriyor *@
+        @*<script>
+                $('#addB').click(function () {
+
+                    alert('New Entry Added!');
+                });
+            </script>*@
+    </div>
+
+
+</form>
+

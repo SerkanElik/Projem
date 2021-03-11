@@ -1,0 +1,15 @@
+﻿
+.menu {
+    position: relative;
+    display: inline-block;
+}
+
+.acilir-menu {
+    display: none;
+    position: absolute;
+    min-width: 400px;
+}
+
+.menu:hover .acilir-menu {
+    display: block;
+}

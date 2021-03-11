@@ -1,0 +1,93 @@
+﻿@using StockControl.Models.Entity
+@model List<Products>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PRODUCT DETAIL</title>
+
+    <!-- For-Mobile-Apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="E Shop Product Details Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Android Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //For-Mobile-Apps -->
+    <!-- Web-Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,500,600,700,300' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <!-- //Web-Fonts -->
+    <!-- Custom-Theme-Files -->
+    <link rel="stylesheet" href="~/web/css/style.css" type="text/css" media="all" />
+    <!-- //Custom-Theme-Files -->
+</head>
+
+<!-- Body-Starts-Here -->
+<body>
+
+    <!-- Content-Starts-Here -->
+    <div class="content">
+
+        <h1>PRODUCT DETAIL</h1>
+        @foreach (var item in Model)
+        {
+            <div class="container" style="width:auto;">
+
+                <h2>@item.PRODUCTNAME</h2>
+
+                <div class="product">
+                    <div class="product-image">
+                        <img src="@item.PRODUCTIMAGE" alt="@item.PRODUCTNAME" style="width:auto;height:auto;">
+                    </div>
+
+                    <div class="product-info" style="width:500px;">
+                        <p><span>PRODUCT ID</span>@item.PRODUCTID</p>
+                        <p><span>BRAND</span>@item.BRAND</p>
+                        <p><span>STOCK</span>@item.STOCK</p>
+
+                    </div>
+                    
+
+                    <div class="clear"></div>
+                </div>
+
+                <div class="accordion">
+                    <section class="ac-container">
+                        <div>
+                            <input id="ac-1" name="accordion-1" type="checkbox" />
+                            <label for="ac-1">Description</label>
+                            <article class="ac-small">
+                                <p>@item.PRODUCTNAME</p>
+                            </article>
+                        </div>
+                        <div>
+                            <input id="ac-2" name="accordion-1" type="checkbox" />
+                            <label for="ac-2">More Description (2)</label>
+                            <article class="ac-large ac-image">
+                                <div class="accordion-image">
+                                    <div class="ac-img">
+                                        <img src="@item.PRODUCTIMAGE" alt="@item.PRODUCTNAME" style="width:100px;height:125px;">
+                                    </div>
+                                    <div class="ac-img">
+                                        <img src="@item.PRODUCTIMAGE" alt="@item.PRODUCTNAME" style="width:100px;height:125px;">
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </article>
+                        </div>
+                       
+                    </section>
+                </div>
+
+            </div>
+        }
+        </div>
+       
+    <!-- //Content-Ends-Here -->
+</body>
+<!-- Body-Ends-Here -->
+
+</html>

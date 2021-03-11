@@ -1,0 +1,28 @@
+﻿@model StockControl.Models.Entity.Customers
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Update</h2>
+
+@using (Html.BeginForm("Update", "Customer", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(x => x.CUSTOMERID, new { @class = "hidden" })
+        @Html.TextBoxFor(x => x.CUSTOMERID, new { @class = "hidden" })
+    </div>
+    <div>
+        @Html.LabelFor(x => x.CUSTOMERNAME)
+        @Html.TextBoxFor(x => x.CUSTOMERNAME, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(x => x.CUSTOMERSURNAME)
+        @Html.TextBoxFor(x => x.CUSTOMERSURNAME, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(x => x.CUSTOMERSTATUS)
+        @Html.TextBoxFor(x => x.CUSTOMERSTATUS, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px;"><button class="btn btn-warning"> UPDATE</button></div>
+}
